@@ -1,0 +1,12 @@
+.todo-add {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.todo-add__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0;
+}

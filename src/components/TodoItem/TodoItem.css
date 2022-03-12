@@ -1,0 +1,26 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.todo-item-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.delete-todo:hover {
+  color: red;
+}
+.done-todo-text {
+  text-decoration: line-through;
+}
+
+.done-task {
+  background-color: rgb(182, 224, 182);
+  color:rgb(26, 160, 26)
+}
