@@ -24,3 +24,11 @@
   background-color: rgb(182, 224, 182);
   color:rgb(26, 160, 26)
 }
+
+
+.options-todo-item {
+  gap:20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

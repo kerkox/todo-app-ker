@@ -1,8 +1,6 @@
 import React from 'react'
 
-export const TodoCounter = (props) => {
-
-  const {completed, total } = props;
+export const TodoCounter = ({completed, total}) => {
 
   return (
     <div>

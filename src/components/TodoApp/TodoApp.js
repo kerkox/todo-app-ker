@@ -6,27 +6,32 @@ import { TodoList } from "../TodoList/TodoList";
 
 export const TodoApp = () => {
   const initState = [
-    { text: "Prueba 1", done: false, id: "abd1" },
-    { text: "Prueba 2", done: false, id: "abd2" },
-    { text: "Prueba 3", done: true, id: "abd3" },
+    { text: "Prueba 1", done: false, id: "abd1", date: "" },
+    { text: "Prueba 2", done: false, id: "abd2", date: "" },
+    { text: "Prueba 3", done: true, id: "abd3", date: "" },
   ];
   const getCompleted = (todos) => {
-    return todos.filter((t) => t.done).length;
+    return todos.filter((t) => !!t.done).length;
   };
   const [todos, setTodos] = useState(initState);
-  const [completed, setCompleted] = useState(getCompleted(todos));
 
   const handleAddTodo = (todo) => {
     setTodos([...todos, todo]);
   };
 
   const handleOnChangeTodo = (done, id) => {
-    let todo = todos.find((t) => t.id === id);
-    todo.done = done;
-    setTodos(todos);
-    let completedTotal = getCompleted(todos);
-    setCompleted(completedTotal);    
+    let todoIndex = todos.findIndex((t) => t.id === id);
+    const newTodos = [...todos];
+    newTodos[todoIndex].done = done;
+    setTodos(newTodos);
   };
+
+  const handleOnChangeDateTodo = (date, id) => {
+    let todoIndex = todos.findIndex((t) => t.id === id);
+    const newTodos = [...todos];
+    newTodos[todoIndex].date = date;
+    setTodos(newTodos);
+  }
 
   const handleOnDelete = (id) => {
     console.log("I try to delte the todo with Id: ", id);
@@ -34,6 +39,7 @@ export const TodoApp = () => {
     setTodos(newTodos);
   };
 
+  const completed = getCompleted(todos)
   const total = todos.length;
 
   return (
@@ -47,6 +53,7 @@ export const TodoApp = () => {
             {...t}
             onChangeTodo={handleOnChangeTodo}
             onDelete={handleOnDelete}
+            onChangeDate={handleOnChangeDateTodo}
           />
         ))}
       </TodoList>

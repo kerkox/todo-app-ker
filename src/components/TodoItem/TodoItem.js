@@ -1,34 +1,56 @@
-import React, { useState } from "react";
+import React from "react";
 import "./TodoItem.css";
 
-export const TodoItem = (props) => {
-  const { text, done, id } = props;
-  const [doneTodo, setDoneTodo] = useState(done);
+export const TodoItem = ({
+  text,
+  done,
+  id,
+  date,
+  onChangeTodo,
+  onDelete,
+  onChangeDate,
+}) => {
   const handleChangeTodo = () => {
-    setDoneTodo(!doneTodo);
-    props.onChangeTodo(doneTodo, id);
+    onChangeTodo(!done, id);
   };
 
   const handleDelete = (e) => {
-    console.log("I was called: handleDelete!!! ");
     e.stopPropagation();
-    props.onDelete(id);
-    console.log("It suppose that this todo was deleted")
-  }
+    onDelete(id);
+  };
+
+  const handleChangeDate = ({ target }) => {
+    let newDate = target.value;
+    console.log("%cdate", "font-size:18px;color:orange", newDate);
+    onChangeDate(newDate, id);
+  };
 
   return (
-    <div className={`list-group-item todo-item ${doneTodo && "done-task"}`} >
+    <div className={`list-group-item todo-item ${done && "done-task"}`}>
       <div className="todo-item-text">
         <input
           className="form-check-input"
           type="checkbox"
-          checked={doneTodo}
-          value={doneTodo}
+          checked={done}
+          value={done}
           onChange={handleChangeTodo}
         />
-        <span className={`${doneTodo && "done-todo-text"}`}>{text}</span>
+        <span className={`${done && "done-todo-text"}`}>{text}</span>
       </div>
-      <i className="fas fa-trash-alt delete-todo" id="delete-todo" onClick={handleDelete}></i>
+      <div className="options-todo-item">
+        <input
+          type="date"
+          name="fecha"
+          className="form-control"
+          onChange={handleChangeDate}
+          value={date}
+        />
+        <i
+          className="fas fa-trash-alt delete-todo"
+          id="delete-todo"
+          onClick={handleDelete}
+        ></i>
+      </div>
     </div>
   );
 };
