@@ -17,7 +17,7 @@ export const TodoItem = (props) => {
   }
 
   return (
-    <div className={`list-group-item todo-item ${doneTodo && "done-task"}`} onClick={handleChangeTodo}>
+    <div className={`list-group-item todo-item ${doneTodo && "done-task"}`} >
       <div className="todo-item-text">
         <input
           className="form-check-input"
